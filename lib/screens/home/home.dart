@@ -35,20 +35,20 @@ class HomeState extends State<Home> {
           return ListView.builder(
             itemBuilder: (BuildContext context, int index) {
               Receita receita = Receita.fromJson(receitas[index]);
-              return _buildCard(receita.title, receita.picture);
+              return _buildCard(receita);
             },
             itemCount: receitas.length,
           );
         });
   }
 
-  Widget _buildCard(title, picture) {
+  Widget _buildCard(receita) {
     return GestureDetector(
       onTap: () {
         Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => Details(),
+              builder: (context) => Details(receita: receita,),
             ));
       },
       child: SizedBox(
@@ -59,9 +59,9 @@ class HomeState extends State<Home> {
             children: [
               Stack(
                 children: [
-                  _buildCardImage(picture),
+                  _buildCardImage(receita.picture),
                   _buildCardGradient(),
-                  _buidCardText(title),
+                  _buidCardText(receita.title),
                 ],
               )
             ],

@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_intro/models/receita.dart';
 
 class Details extends StatelessWidget {
+
+  final Receita receita;
+
+  const Details({Key? key, required this.receita}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return _buildDetails();
@@ -9,15 +15,15 @@ class Details extends StatelessWidget {
 
   _buildDetails() {
     return Scaffold(
-      body: Column(
+      body: ListView(
         children: [
-          _buildDetailsImage('assets/images/ratatouille.jpg'),
-          _buildDetailsTitle('Ratatouille'),
-          _buildDetailsIconsLine('2-3 porções', '50 min'),
+          _buildDetailsImage(receita.picture),
+          _buildDetailsTitle(receita.title),
+          _buildDetailsIconsLine('${receita.portions} portions', receita.preparationTime),
           _buildDetailsSubtitle('Ingredients'),
-          _buildDetailsText('Ingredients here xxx xxx xxx.'),
+          _buildDetailsText(receita.ingredients),
           _buildDetailsSubtitle('Preparation Mode'),
-          _buildDetailsText('Preparation Mode here xxxx xxxx.'),
+          _buildDetailsText(receita.preparationMode),
         ],
       ),
       appBar: _buildAppBar(),
@@ -29,11 +35,13 @@ class Details extends StatelessWidget {
   }
 
   _buildDetailsTitle(title) {
-    return Text(
-      title,
-      style: TextStyle(
-        color: Colors.deepOrange,
-        fontSize: 30,
+    return Center(
+      child: Text(
+        title,
+        style: TextStyle(
+          color: Colors.deepOrange,
+          fontSize: 30,
+        ),
       ),
     );
   }
@@ -68,15 +76,20 @@ class Details extends StatelessWidget {
   }
 
   _buildDetailsSubtitle(subtitle) {
-    return Text(
-      subtitle,
-      style: TextStyle(fontSize: 20),
+    return Center(
+      child: Text(
+        subtitle,
+        style: TextStyle(fontSize: 20),
+      ),
     );
   }
 
   _buildDetailsText(text) {
-    return Text(
-      text
+    return Container(
+      padding: EdgeInsets.all(16.0),
+      child: Text(
+        text
+      ),
     );
   }
 
