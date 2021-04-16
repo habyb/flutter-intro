@@ -1,36 +1,36 @@
 class Receita {
-  String? titulo;
-  String? foto;
-  String? porcoes;
-  String? tempoPreparo;
-  String? ingredientes;
-  String? modoPreparo;
+  String? title;
+  String? picture;
+  String? portions;
+  String? preparationTime;
+  String? ingredients;
+  String? preparationMode;
 
   Receita(
-      {required this.titulo,
-      required this.foto,
-      required this.porcoes,
-      required this.tempoPreparo,
-      required this.ingredientes,
-      required this.modoPreparo});
+      {required this.title,
+      required this.picture,
+      required this.portions,
+      required this.preparationTime,
+      required this.ingredients,
+      required this.preparationMode});
 
   Receita.fromJson(Map<String, dynamic> json) {
-    titulo = json['titulo'];
-    foto = json['foto'];
-    porcoes = json['porcoes'];
-    tempoPreparo = json['tempo_preparo'];
-    ingredientes = json['ingredientes'];
-    modoPreparo = json['modo_preparo'];
+    title = json['title'];
+    picture = json['picture'];
+    portions = json['portions'];
+    preparationTime = json['preparation_time'];
+    ingredients = json['ingredients'];
+    preparationMode = json['preparation_mode'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['titulo'] = this.titulo;
-    data['foto'] = this.foto;
-    data['porcoes'] = this.porcoes;
-    data['tempo_preparo'] = this.tempoPreparo;
-    data['ingredientes'] = this.ingredientes;
-    data['modo_preparo'] = this.modoPreparo;
+    data['title'] = this.title;
+    data['picture'] = this.picture;
+    data['portions'] = this.portions;
+    data['preparation_time'] = this.preparationTime;
+    data['ingredients'] = this.ingredients;
+    data['preparation_mode'] = this.preparationMode;
     return data;
   }
 }

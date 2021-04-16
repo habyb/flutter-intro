@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_intro/models/receita.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -15,12 +18,30 @@ class HomeState extends State<Home> {
 
   Widget _buildHome() {
     return Scaffold(
-      body: _buildCard(),
+      body: _buildCardList(),
       appBar: _buildAppBar(),
     );
   }
 
-  Widget _buildCard() {
+  Widget _buildCardList() {
+    return FutureBuilder(
+        initialData: [],
+        future:
+            DefaultAssetBundle.of(context).loadString('assets/receitas.json'),
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          List<dynamic> receitas = json.decode(snapshot.data.toString());
+
+          return ListView.builder(
+            itemBuilder: (BuildContext context, int index) {
+              Receita receita = Receita.fromJson(receitas[index]);
+              return _buildCard(receita.title, receita.picture);
+            },
+            itemCount: receitas.length,
+          );
+        });
+  }
+
+  Widget _buildCard(title, picture) {
     return SizedBox(
       height: 300,
       child: Card(
@@ -29,8 +50,8 @@ class HomeState extends State<Home> {
           children: [
             Stack(
               children: [
-                _buildCardImage(),
-                _buidCardText(),
+                _buildCardImage(picture),
+                _buidCardText(title),
               ],
             )
           ],
@@ -39,20 +60,20 @@ class HomeState extends State<Home> {
     );
   }
 
-  Image _buildCardImage() {
-    return Image.network(
-      'https://milkandbun.files.wordpress.com/2015/01/orange-cake-1.jpg',
+  Image _buildCardImage(picture) {
+    return Image.asset(
+      picture,
       fit: BoxFit.fill,
       height: 268,
     );
   }
 
-  Positioned _buidCardText() {
+  Positioned _buidCardText(title) {
     return Positioned(
       bottom: 10,
       left: 10,
       child: Text(
-        'Orange Cake',
+        title,
         style: TextStyle(fontSize: 20),
       ),
     );
