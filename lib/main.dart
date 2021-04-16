@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
           appBar: AppBar(
             title: Text('Cooking at home'),
+            centerTitle: true,
           ),
           body: SizedBox(
             height: 300,
