@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_intro/models/receita.dart';
+import 'package:flutter_intro/screens/details/details.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -42,20 +43,29 @@ class HomeState extends State<Home> {
   }
 
   Widget _buildCard(title, picture) {
-    return SizedBox(
-      height: 300,
-      child: Card(
-        margin: EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            Stack(
-              children: [
-                _buildCardImage(picture),
-                _buildCardGradient(),
-                _buidCardText(title),
-              ],
-            )
-          ],
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => Details(),
+            ));
+      },
+      child: SizedBox(
+        height: 300,
+        child: Card(
+          margin: EdgeInsets.all(16.0),
+          child: Column(
+            children: [
+              Stack(
+                children: [
+                  _buildCardImage(picture),
+                  _buildCardGradient(),
+                  _buidCardText(title),
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );
