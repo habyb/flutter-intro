@@ -51,6 +51,7 @@ class HomeState extends State<Home> {
             Stack(
               children: [
                 _buildCardImage(picture),
+                _buildCardGradient(),
                 _buidCardText(title),
               ],
             )
@@ -68,13 +69,31 @@ class HomeState extends State<Home> {
     );
   }
 
+  Container _buildCardGradient() {
+    return Container(
+      height: 268,
+      decoration: BoxDecoration(
+          gradient: LinearGradient(
+        begin: FractionalOffset.topCenter,
+        end: FractionalOffset.bottomCenter,
+        colors: [
+          Colors.transparent,
+          Colors.deepOrange.withOpacity(0.7),
+        ],
+      )),
+    );
+  }
+
   Positioned _buidCardText(title) {
     return Positioned(
       bottom: 10,
       left: 10,
       child: Text(
         title,
-        style: TextStyle(fontSize: 20),
+        style: TextStyle(
+          fontSize: 20,
+          color: Colors.white,
+        ),
       ),
     );
   }
