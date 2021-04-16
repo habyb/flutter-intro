@@ -20,11 +20,26 @@ class MyApp extends StatelessWidget {
           body: SizedBox(
             height: 300,
             child: Card(
+              margin: EdgeInsets.all(16.0),
               child: Column(
                 children: [
-                  Image.network(
-                      'https://milkandbun.files.wordpress.com/2015/01/orange-cake-1.jpg'),
-                  Text('Orange Cake'),
+                  Stack(
+                    children: [
+                      Image.network(
+                        'https://milkandbun.files.wordpress.com/2015/01/orange-cake-1.jpg',
+                        fit: BoxFit.fill,
+                        height: 268,
+                      ),
+                      Positioned(
+                        bottom: 10,
+                        left: 10,
+                        child: Text(
+                          'Orange Cake',
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      )
+                    ],
+                  )
                 ],
               ),
             ),
